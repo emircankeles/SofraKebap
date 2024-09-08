@@ -33,14 +33,14 @@ namespace API.Controllers
             _aboutService.TAdd(about);
             return Ok("Hakkında kısmı başarılı bir sekilde eklendi.");
         }
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public IActionResult DeleteAbout(int id)
         {
             var values = _aboutService.TGetByID(id);
             _aboutService.TDelete(values);
             return Ok("Silme işlemi başarılı.");
         }
-        [HttpPut]
+        [HttpPut("{id}")]
         public IActionResult UpdateAbout(UpdateAboutDto updateAboutDto)
         {
             About about = new About()
@@ -53,7 +53,7 @@ namespace API.Controllers
             _aboutService.TUpdate(about);
             return Ok("Güncelleme işlemi başarılı.");
         }
-        [HttpGet("GetAbout")]
+        [HttpGet("{id}")]
         public IActionResult GetAbout(int id)
         {
             var value = _aboutService.TGetByID(id);

@@ -8,7 +8,7 @@ namespace SofraKebab.DTOLayer.CategoryDTO
 {
 	public class ResultCategoryDto
 	{
-		public int Id { get; set; }
+		public int CategoryID { get; set; }
 		public string Name { get; set; }
 		public bool Status { get; set; }
 	}

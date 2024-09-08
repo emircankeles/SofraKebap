@@ -193,6 +193,101 @@ namespace SofraKebab.DataAccessLayer.Migrations
                     b.ToTable("Features");
                 });
 
+            modelBuilder.Entity("SofraKebab.EntityLayer.Entities.MenuTable", b =>
+                {
+                    b.Property<int>("MenuTableID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MenuTableID"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
+                    b.HasKey("MenuTableID");
+
+                    b.ToTable("MenuTables");
+                });
+
+            modelBuilder.Entity("SofraKebab.EntityLayer.Entities.MoneyCase", b =>
+                {
+                    b.Property<int>("CaseID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CaseID"), 1L, 1);
+
+                    b.Property<decimal>("TotalAmount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("CaseID");
+
+                    b.ToTable("MoneyCases");
+                });
+
+            modelBuilder.Entity("SofraKebab.EntityLayer.Entities.Order", b =>
+                {
+                    b.Property<int>("OrderID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderID"), 1L, 1);
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("OrderDate")
+                        .HasColumnType("Date");
+
+                    b.Property<string>("TableNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("TotalPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("OrderID");
+
+                    b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("SofraKebab.EntityLayer.Entities.OrderDetail", b =>
+                {
+                    b.Property<int>("OrderDetailID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderDetailID"), 1L, 1);
+
+                    b.Property<int>("Count")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OrderID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductID")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("TotalPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("UnitPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("OrderDetailID");
+
+                    b.HasIndex("OrderID");
+
+                    b.HasIndex("ProductID");
+
+                    b.ToTable("OrderDetails");
+                });
+
             modelBuilder.Entity("SofraKebab.EntityLayer.Entities.Product", b =>
                 {
                     b.Property<int>("ProductId")
@@ -286,6 +381,25 @@ namespace SofraKebab.DataAccessLayer.Migrations
                     b.ToTable("Testimonials");
                 });
 
+            modelBuilder.Entity("SofraKebab.EntityLayer.Entities.OrderDetail", b =>
+                {
+                    b.HasOne("SofraKebab.EntityLayer.Entities.Order", "Order")
+                        .WithMany("OrderDetails")
+                        .HasForeignKey("OrderID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SofraKebab.EntityLayer.Entities.Product", "Product")
+                        .WithMany("OrderDetails")
+                        .HasForeignKey("ProductID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Order");
+
+                    b.Navigation("Product");
+                });
+
             modelBuilder.Entity("SofraKebab.EntityLayer.Entities.Product", b =>
                 {
                     b.HasOne("SofraKebab.EntityLayer.Entities.Category", "Category")
@@ -300,6 +414,16 @@ namespace SofraKebab.DataAccessLayer.Migrations
             modelBuilder.Entity("SofraKebab.EntityLayer.Entities.Category", b =>
                 {
                     b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("SofraKebab.EntityLayer.Entities.Order", b =>
+                {
+                    b.Navigation("OrderDetails");
+                });
+
+            modelBuilder.Entity("SofraKebab.EntityLayer.Entities.Product", b =>
+                {
+                    b.Navigation("OrderDetails");
                 });
 #pragma warning restore 612, 618
         }
