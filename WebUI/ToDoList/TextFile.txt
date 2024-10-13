@@ -1,0 +1,19 @@
+﻿--categorycount
+--productcount
+--aktif kategori 
+--pasif kategori
+
+--kategori adına göre ürün sayisi
+--kategori adına göre ürün sayısı
+
+--ortalama fiyat
+--en yüksek fiyatlı ürün
+--en düşük fiyatlı ürün
+--ortalama döner fiyatı
+
+--toplam siparis sayısı
+--aktif siparis sayısı
+--son siparis tutarı
+--kasadaki tutar
+--bugünkü kazanc
+--masa sayısı
