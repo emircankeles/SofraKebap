@@ -7,10 +7,8 @@ using System.Threading.Tasks;
 
 namespace SofraKebab.DataAccessLayer.Abstract
 {
-	public interface ICategoryDal:IGenericDal<Category>
-	{
-		public int CategoryCount();
-		public int ActiveCategoryCount();
-		public int PassiveCategoryCount();
-	}
+    public interface IOrderDal:IGenericDal<Order>
+    {
+
+    }
 }

@@ -17,12 +17,22 @@ namespace SofraKebab.BusinessLayer.Concreate
 			_categorydal = categorydal;
 		}
 
-		public void TAdd(Category entity)
+        public int TActiveCategoryCount()
+        {
+            return _categorydal.ActiveCategoryCount();
+        }
+
+        public void TAdd(Category entity)
 		{
 			_categorydal.Add(entity);
 		}
 
-		public void TDelete(Category entity)
+        public int TCategoryCount()
+        {
+            return _categorydal.CategoryCount();
+        }
+
+        public void TDelete(Category entity)
 		{
 			_categorydal.Delete(entity);
 		}
@@ -37,7 +47,12 @@ namespace SofraKebab.BusinessLayer.Concreate
 			return _categorydal.GetListAll();
 		}
 
-		public void TUpdate(Category entity)
+        public int TPassiveCategoryCount()
+        {
+            return _categorydal.PassiveCategoryCount();
+        }
+
+        public void TUpdate(Category entity)
 		{
 			_categorydal.Update(entity);
 		}

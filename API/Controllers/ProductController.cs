@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -27,6 +28,43 @@ namespace API.Controllers
             var value = _mapper.Map<List<ResultProductDto>>(_productService.TGetListAll());
             return Ok(value);
         }
+        [HttpGet("ProductCount")]
+        public IActionResult ProductCount()
+        {
+            return Ok(_productService.TProductCount());
+        }
+
+        [HttpGet("ProductCountByDrink")]
+        public IActionResult ProductCountByDrink()
+        {
+            return Ok(_productService.TProductCountByCategoryNameDrink());
+        }
+
+        [HttpGet("ProductCountByDöner")]
+        public IActionResult ProductCountByDöner()
+        {
+            return Ok(_productService.TProductCountByCategoryNameDöner());
+        }
+        [HttpGet("AvgDönerPrice")]
+        public IActionResult AvgDönerPrice()
+        {
+            return Ok(_productService.TAvgDönerPrice());
+        }
+        [HttpGet("ProductPriceAVG")]
+        public IActionResult ProductPriceAVG()
+        {
+            return Ok(_productService.TProductPriceAVG());
+        }
+        [HttpGet("MaxProductPrice")]
+        public IActionResult MaxProductPrice()
+        {
+            return Ok(_productService.TMaxProductPrice());
+        }
+        [HttpGet("MinProductPrice")]
+        public IActionResult MinProductPrice()
+        {
+            return Ok(_productService.TMinProductPrice());
+        }
         [HttpGet("ProductListwithCategory")]
         public IActionResult ProductListwithCategory() 
         {
@@ -43,6 +81,7 @@ namespace API.Controllers
             });
             return Ok(values);
         }
+
         [HttpPost]
         public IActionResult CreateProduct(CreateProductDto createProductDto)
         {

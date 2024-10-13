@@ -7,10 +7,8 @@ using System.Threading.Tasks;
 
 namespace SofraKebab.BusinessLayer.Abstract
 {
-	public interface ICategoryService:IGenericService<Category>
-	{
-        public int TCategoryCount();
-        public int TActiveCategoryCount();
-        public int TPassiveCategoryCount();
+    public interface IOrderDetailService : IGenericService<OrderDetail>
+    {
+
     }
 }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SofraKebab.DataAccessLayer.Concreate;
 
@@ -11,9 +12,10 @@ using SofraKebab.DataAccessLayer.Concreate;
 namespace SofraKebab.DataAccessLayer.Migrations
 {
     [DbContext(typeof(SofraKebabContext))]
-    partial class SofraKebabContextModelSnapshot : ModelSnapshot
+    [Migration("20240827093939_mig_add-order")]
+    partial class mig_addorder
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

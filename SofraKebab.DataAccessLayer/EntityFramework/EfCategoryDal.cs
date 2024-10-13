@@ -15,5 +15,22 @@ namespace SofraKebab.DataAccessLayer.EntityFramework
 		public EfCategoryDal(SofraKebabContext context) : base(context)
 		{
 		}
-	}
+
+        public int ActiveCategoryCount()
+        {
+           using var context=new SofraKebabContext();
+           return context.Categories.Where(x => x.Status == true).Count();
+        }
+        public int PassiveCategoryCount()
+        {
+            using var context = new SofraKebabContext();
+            return context.Categories.Where(x => x.Status == false).Count();
+        }
+
+        public int CategoryCount()
+        {
+            using var context = new SofraKebabContext();
+            return context.Categories.Count();
+        }
+    }
 }
