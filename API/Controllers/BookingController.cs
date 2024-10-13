@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SofraKebab.BusinessLayer.Abstract;
 using SofraKebab.DTOLayer.BookingDTO;
@@ -11,15 +12,17 @@ namespace API.Controllers
     public class BookingController : ControllerBase
     {
         private readonly IBookingService _bookingService;
+        private readonly IMapper _mapper;
 
-        public BookingController(IBookingService bookingService)
+        public BookingController(IBookingService bookingService,IMapper mapper)
         {
+            _mapper = mapper;
             _bookingService = bookingService;
         }
         [HttpGet]
         public IActionResult BookingList()
         {
-            var values = _bookingService.TGetListAll();
+            var values = _mapper.Map<List<ResultBookingDto>>(_bookingService.TGetListAll());
             return Ok(values);
         }
         [HttpPost]
@@ -36,12 +39,18 @@ namespace API.Controllers
             _bookingService.TAdd(booking);
             return Ok("Rezervasyon oluşturuldu.");
         }
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public IActionResult DeleteBooking(int id)
         {
             var value = _bookingService.TGetByID(id);
             _bookingService.TDelete(value);
             return Ok("Rezervasyon silindi");
+        }
+        [HttpGet("{id}")]
+        public IActionResult GetBooking(int id)
+        {
+            var values = _bookingService.TGetByID(id);
+            return Ok(values);
         }
         [HttpPut]
         public IActionResult UpdateBooking(UpdateBookingDto updateBookingDto)
@@ -57,11 +66,6 @@ namespace API.Controllers
             _bookingService.TUpdate(booking);
             return Ok("Rezervasyon güncellendi.");
         }
-        [HttpGet("Get Booking")]
-        public IActionResult GetBooking(int id)
-        {
-            var values = _bookingService.TGetByID(id);
-            return Ok(values);
-        }
+
     }
 }

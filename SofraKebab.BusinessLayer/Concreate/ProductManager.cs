@@ -12,12 +12,23 @@ namespace SofraKebab.BusinessLayer.Concreate
 	public class ProductManager : IProductService
 	{
 		private readonly IProductDal _ıproductdal;
-		public void TAdd(Product entity)
+
+        public ProductManager(IProductDal ıproductdal)
+        {
+            _ıproductdal = ıproductdal;
+        }
+
+        public void TAdd(Product entity)
 		{
 			_ıproductdal.Add(entity);
 		}
 
-		public void TDelete(Product entity)
+        public decimal TAvgDönerPrice()
+        {
+           return _ıproductdal.AvgDönerPrice();
+        }
+
+        public void TDelete(Product entity)
 		{
 			_ıproductdal.Delete(entity);
 		}
@@ -35,6 +46,36 @@ namespace SofraKebab.BusinessLayer.Concreate
         public List<Product> TGetProductsWithCategories()
         {
             return _ıproductdal.GetProductsWithCategories();
+        }
+
+        public string TMaxProductPrice()
+        {
+            return _ıproductdal.MaxProductPrice();
+        }
+
+        public string TMinProductPrice()
+        {
+           return _ıproductdal.MinProductPrice();
+        }
+
+        public int TProductCount()
+        {
+            return _ıproductdal.ProductCount();
+        }
+
+        public int TProductCountByCategoryNameDrink()
+        {
+            return _ıproductdal.ProductCountByCategoryNameDrink();
+        }
+
+        public int TProductCountByCategoryNameDöner()
+        {
+            return _ıproductdal.ProductCountByCategoryNameDöner();
+        }
+
+        public decimal TProductPriceAVG()
+        {
+            return _ıproductdal.ProductPriceAVG();
         }
 
         public void TUpdate(Product entity)

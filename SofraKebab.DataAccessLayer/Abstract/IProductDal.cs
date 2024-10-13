@@ -7,8 +7,15 @@ using System.Threading.Tasks;
 
 namespace SofraKebab.DataAccessLayer.Abstract
 {
-	public interface IProductDal:IGenericDal<Product>
-	{
-		 List<Product> GetProductsWithCategories();
-	}
+    public interface IProductDal : IGenericDal<Product>
+    {
+        List<Product> GetProductsWithCategories();
+        public int ProductCount();
+        public int ProductCountByCategoryNameDrink();
+        public int ProductCountByCategoryNameDöner();
+        decimal ProductPriceAVG();
+        string MaxProductPrice();
+        string MinProductPrice();
+        decimal AvgDönerPrice();
+    }
 }

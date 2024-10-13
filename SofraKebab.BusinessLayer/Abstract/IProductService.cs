@@ -7,8 +7,15 @@ using System.Threading.Tasks;
 
 namespace SofraKebab.BusinessLayer.Abstract
 {
-	public interface IProductService:IGenericService<Product>
-	{
+    public interface IProductService : IGenericService<Product>
+    {
         List<Product> TGetProductsWithCategories();
+        public int TProductCount();
+        public int TProductCountByCategoryNameDrink();
+        public int TProductCountByCategoryNameDöner();
+        decimal TProductPriceAVG();
+        string TMaxProductPrice();
+        string TMinProductPrice();
+        decimal TAvgDönerPrice();
     }
 }
