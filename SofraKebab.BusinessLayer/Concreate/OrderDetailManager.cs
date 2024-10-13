@@ -1,4 +1,5 @@
 ﻿using SofraKebab.BusinessLayer.Abstract;
+using SofraKebab.DataAccessLayer.Abstract;
 using SofraKebab.EntityLayer.Entities;
 using System;
 using System.Collections.Generic;
@@ -10,11 +11,11 @@ namespace SofraKebab.BusinessLayer.Concreate
 {
     public class OrderDetailManager : IOrderDetailService
     {
-        private readonly IOrderDetailService _orderDetailService;
+        private readonly IOrderDetailDal _orderDetailDal;
 
-        public OrderDetailManager(IOrderDetailService orderDetailService)
+        public OrderDetailManager(IOrderDetailDal orderDetailDal)
         {
-            _orderDetailService = orderDetailService;
+            _orderDetailDal = orderDetailDal;
         }
 
         public void TAdd(OrderDetail entity)
