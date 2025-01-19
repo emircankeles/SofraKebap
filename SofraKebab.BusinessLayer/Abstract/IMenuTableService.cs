@@ -7,11 +7,7 @@ using System.Threading.Tasks;
 
 namespace SofraKebab.BusinessLayer.Abstract
 {
-    public interface IOrderService:IGenericService<Order>
+    public interface IMenuTableService :IGenericService<MenuTable>
     {
-        int TTotalOrderCount();
-        int TActiveOrders();
-        decimal TLastOrderPrice();
-        decimal TTodayGetMoney();
     }
 }

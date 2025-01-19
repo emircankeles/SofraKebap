@@ -15,5 +15,35 @@ namespace SofraKebab.DataAccessLayer.EntityFramework
         public EfOrderDal(SofraKebabContext context) : base(context)
         {
         }
+
+        public int ActiveOrders()
+        {
+            using var context = new SofraKebabContext();
+            var a = context.Orders.Where(x => x.Activate == true );
+            return a.Count(); 
+        }
+
+        public decimal LastOrderPrice()
+        {
+            using var context = new SofraKebabContext();
+            var price =  context.Orders.Where(x => x.Activate == false)
+                .Select(x=>x.TotalPrice).FirstOrDefault();
+            return price;
+                
+        }
+
+        public decimal TodayGetMoney()
+        {
+            using var context = new SofraKebabContext();
+            var total = context.Orders.Where(x=>x.Activate == false)
+                .Select(x=>x.TotalPrice).Sum();
+            return total;
+        }
+
+        public int TotalOrderCount()
+        {
+            using var context = new SofraKebabContext();
+            return context.Orders.Count();
+        }
     }
 }
