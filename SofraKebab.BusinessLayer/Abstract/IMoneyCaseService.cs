@@ -7,11 +7,8 @@ using System.Threading.Tasks;
 
 namespace SofraKebab.BusinessLayer.Abstract
 {
-    public interface IOrderService:IGenericService<Order>
+    public interface IMoneyCaseService : IGenericService<MoneyCase>
     {
-        int TTotalOrderCount();
-        int TActiveOrders();
-        decimal TLastOrderPrice();
-        decimal TTodayGetMoney();
+        decimal TTotalMoney();
     }
 }

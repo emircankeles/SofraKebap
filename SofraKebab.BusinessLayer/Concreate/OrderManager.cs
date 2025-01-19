@@ -18,6 +18,11 @@ namespace SofraKebab.BusinessLayer.Concreate
             _orderDal = orderDal;
         }
 
+        public int TActiveOrders()
+        {
+            return _orderDal.ActiveOrders();
+        }
+
         public void TAdd(Order entity)
         {
             throw new NotImplementedException();
@@ -36,6 +41,21 @@ namespace SofraKebab.BusinessLayer.Concreate
         public List<Order> TGetListAll()
         {
             throw new NotImplementedException();
+        }
+
+        public decimal TLastOrderPrice()
+        {
+            return _orderDal.LastOrderPrice();
+        }
+
+        public decimal TTodayGetMoney()
+        {
+            return _orderDal.TodayGetMoney();
+        }
+
+        public int TTotalOrderCount()
+        {
+            return _orderDal.TotalOrderCount();
         }
 
         public void TUpdate(Order entity)

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SofraKebab.DataAccessLayer.Concreate;
 
@@ -11,9 +12,10 @@ using SofraKebab.DataAccessLayer.Concreate;
 namespace SofraKebab.DataAccessLayer.Migrations
 {
     [DbContext(typeof(SofraKebabContext))]
-    partial class SofraKebabContextModelSnapshot : ModelSnapshot
+    [Migration("20250119185002_add_newfield_Order")]
+    partial class add_newfield_Order
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -191,42 +193,6 @@ namespace SofraKebab.DataAccessLayer.Migrations
                     b.HasKey("FeatureID");
 
                     b.ToTable("Features");
-                });
-
-            modelBuilder.Entity("SofraKebab.EntityLayer.Entities.MenuTable", b =>
-                {
-                    b.Property<int>("MenuTableID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MenuTableID"), 1L, 1);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("Status")
-                        .HasColumnType("bit");
-
-                    b.HasKey("MenuTableID");
-
-                    b.ToTable("MenuTables");
-                });
-
-            modelBuilder.Entity("SofraKebab.EntityLayer.Entities.MoneyCase", b =>
-                {
-                    b.Property<int>("MoneyCaseID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MoneyCaseID"), 1L, 1);
-
-                    b.Property<decimal>("TotalCount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("MoneyCaseID");
-
-                    b.ToTable("MoneyCases");
                 });
 
             modelBuilder.Entity("SofraKebab.EntityLayer.Entities.Order", b =>

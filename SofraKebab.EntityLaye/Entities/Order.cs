@@ -13,6 +13,7 @@ namespace SofraKebab.EntityLayer.Entities
         public string Description { get; set; }
         public DateTime Date { get; set; }
         public decimal TotalPrice { get; set; }
+        public bool Activate { get; set; }
         public List<OrderDetail> OrderDetails { get; set; }
     }
 }

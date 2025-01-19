@@ -7,11 +7,8 @@ using System.Threading.Tasks;
 
 namespace SofraKebab.DataAccessLayer.Abstract
 {
-    public interface IOrderDal:IGenericDal<Order>
+    public interface IMoneyCaseDal :IGenericDal<MoneyCase>
     {
-        int TotalOrderCount();
-        int ActiveOrders();
-        decimal LastOrderPrice();
-        decimal TodayGetMoney();
+        decimal TotalMoney();
     }
 }
