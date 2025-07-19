@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SofraKebab.BusinessLayer.Abstract;
 using SofraKebab.DTOLayer.AboutDTO;
@@ -11,26 +12,23 @@ namespace API.Controllers
     public class AboutController : ControllerBase
     {
         private readonly IAboutService _aboutService;
-        public AboutController(IAboutService aboutService)
+        private readonly IMapper _mapper;
+        public AboutController(IAboutService aboutService,IMapper mapper)
         {
             _aboutService = aboutService;
+            _mapper = mapper;
         }
         [HttpGet]
         public IActionResult AboutList()
         {
             var values = _aboutService.TGetListAll();
-            return Ok(values);
+            return Ok(_mapper.Map<List<ResultAboutDto>>(values));
         }
         [HttpPost]
         public IActionResult CreateAbout(CreateAboutDto createAboutDto)
         {
-            About about = new About()
-            {
-                Title = createAboutDto.Title,
-                Description = createAboutDto.Description,
-                ImageUrl = createAboutDto.ImageUrl,
-            };
-            _aboutService.TAdd(about);
+           var value = _mapper.Map<About>(createAboutDto);
+            _aboutService.TAdd(value);
             return Ok("Hakkında kısmı başarılı bir sekilde eklendi.");
         }
         [HttpDelete("{id}")]
@@ -43,14 +41,8 @@ namespace API.Controllers
         [HttpPut("{id}")]
         public IActionResult UpdateAbout(UpdateAboutDto updateAboutDto)
         {
-            About about = new About()
-            {
-                AboutID = updateAboutDto.AboutID,
-                Title = updateAboutDto.Title,
-                Description = updateAboutDto.Description,
-                ImageUrl = updateAboutDto.ImageUrl,
-            };
-            _aboutService.TUpdate(about);
+            var value = _mapper.Map<About>(updateAboutDto);
+            _aboutService.TUpdate(value);
             return Ok("Güncelleme işlemi başarılı.");
         }
         [HttpGet("{id}")]

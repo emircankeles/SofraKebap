@@ -17,5 +17,9 @@ namespace SofraKebab.BusinessLayer.Abstract
         string TMaxProductPrice();
         string TMinProductPrice();
         decimal TAvgDönerPrice();
+        decimal TProductPriceBySteakBurger();
+        decimal TTotalPriceByDrinkCategory();
+        decimal TTotalPriceBySaladCategory();
+        List<Product> TGetLast9Products();
     }
 }

@@ -11,54 +11,45 @@ namespace API.Controllers
     [ApiController]
     public class SocialMediaController : ControllerBase
     {
-        private readonly ISocialmediaService _socialmediaservice;
+        private readonly ISocialmediaService _socialMediaservice;
         private readonly IMapper _mapper;
 
         public SocialMediaController(IMapper mapper, ISocialmediaService socialmediaService)
         {
-            _socialmediaservice = socialmediaService;
+            _socialMediaservice = socialmediaService;
             _mapper = mapper;
         }
         [HttpGet]
         public IActionResult SocialmediaList()
         {
-            var value = _mapper.Map<List<ResultSocialmediaDto>>(_socialmediaservice.TGetListAll());
+            var value = _mapper.Map<List<ResultSocialmediaDto>>(_socialMediaservice.TGetListAll());
             return Ok(value);
         }
         [HttpPost]
         public IActionResult CreateSocialmedia(CreateSocialmediaDto createSocialmediaDto)
         {
-            _socialmediaservice.TAdd(new SocialMedia()
-            {
-                Icon = createSocialmediaDto.Icon,
-                Title = createSocialmediaDto.Title,
-                Url = createSocialmediaDto.Url
-            });
+            var value = _mapper.Map<SocialMedia>(createSocialmediaDto);
+            _socialMediaservice.TAdd(value);
             return Ok("Sosyal medya bilgisi eklendi.");
         }
         [HttpDelete]
         public IActionResult DeleteSocialmedia(int id)
         {
-            var value = _socialmediaservice.TGetByID(id);
-            _socialmediaservice.TDelete(value);
+            var value = _socialMediaservice.TGetByID(id);
+            _socialMediaservice.TDelete(value);
             return Ok("Silindi.");
         }
         [HttpGet("GetSocialmedia")]
         public IActionResult GetSocialmedia(int id)
         {
-            var value = _socialmediaservice.TGetByID(id);
+            var value = _socialMediaservice.TGetByID(id);
             return Ok(value);
         }
         [HttpPut]
         public IActionResult UpdateSocialmedia(UpdateSocialmediaDto updateSocialmediaDto)
         {
-            _socialmediaservice.TUpdate(new SocialMedia()
-            {
-                SocialMediaID = updateSocialmediaDto.SocialMediaID,
-                Title = updateSocialmediaDto.Title,
-                Url = updateSocialmediaDto.Url,
-                Icon = updateSocialmediaDto.Icon
-            });
+            var value = _mapper.Map<SocialMedia>(updateSocialmediaDto);
+            _socialMediaservice.TUpdate(value);
             return Ok("Güncellendi.");
         }
     }

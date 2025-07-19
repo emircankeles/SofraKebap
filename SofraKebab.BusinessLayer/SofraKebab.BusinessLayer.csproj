@@ -7,7 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="11.5.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\SofraKebab.DataAccessLayer\SofraKebab.DataAccessLayer.csproj" />
+    <ProjectReference Include="..\SofraKebab.DTOLayer\SofraKebab.DTOLayer.csproj" />
   </ItemGroup>
 
 </Project>

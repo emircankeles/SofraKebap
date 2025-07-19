@@ -17,7 +17,17 @@ namespace SofraKebab.BusinessLayer.Concreate
 			_bookingDal = bookingDal;
 		}
 
-		public void TAdd(Booking entity)
+        public void TBookingStatusApproved(int id)
+        {
+            _bookingDal.BookingStatusApproved(id);
+        }
+
+        public void TBookingStatusCancelled(int id)
+        {
+            _bookingDal.BookingStatusCancelled(id);
+        }
+
+        public void TAdd(Booking entity)
 		{
 			_bookingDal.Add(entity);
 		}

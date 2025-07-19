@@ -111,16 +111,15 @@ namespace API.Controllers
         [HttpPut]
         public IActionResult UpdateProduct(UpdateProductDto updateProductDto)
         {
-            _productService.TUpdate(new Product()
-            {
-                ProductId = updateProductDto.ProductId,
-                Description = updateProductDto.Description,
-                ImageUrl = updateProductDto.ImageUrl,
-                Price = updateProductDto.Price,
-                ProductName = updateProductDto.ProductName,
-                ProductStatus = updateProductDto.ProductStatus
-            });
+            var value = _mapper.Map<Product>(updateProductDto);
+            _productService.TUpdate(value);
             return Ok("Güncellendi.");
+        }
+        [HttpGet("GetLast9Products")]
+        public IActionResult GetLast9Products()
+        {
+            var value = _productService.TGetLast9Products();
+            return Ok(value);
         }
     }
 }

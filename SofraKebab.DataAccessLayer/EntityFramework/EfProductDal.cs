@@ -23,6 +23,13 @@ namespace SofraKebab.DataAccessLayer.EntityFramework
             return context.Products.Where(x=>x.CategoryID==(context.Categories.Where(y=>y.Name=="Döner").Select(z=>z.CategoryID).FirstOrDefault())).Average(x=>x.Price);
         }
 
+        public List<Product> GetLast9Products()
+        {
+            var context = new SofraKebabContext();
+            var values = context.Products.Take(9).ToList();
+            return values;
+        }
+
         public List<Product> GetProductsWithCategories()
         {
             var context = new SofraKebabContext();
@@ -64,6 +71,21 @@ namespace SofraKebab.DataAccessLayer.EntityFramework
         {
             using var context = new SofraKebabContext();
             return context.Products.Average(x => x.Price);
+        }
+
+        public decimal ProductPriceBySteakBurger()
+        {
+            throw new NotImplementedException();
+        }
+
+        public decimal TotalPriceByDrinkCategory()
+        {
+            throw new NotImplementedException();
+        }
+
+        public decimal TotalPriceBySaladCategory()
+        {
+            throw new NotImplementedException();
         }
     }
 }

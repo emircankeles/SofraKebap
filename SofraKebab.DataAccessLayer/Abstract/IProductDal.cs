@@ -17,5 +17,9 @@ namespace SofraKebab.DataAccessLayer.Abstract
         string MaxProductPrice();
         string MinProductPrice();
         decimal AvgDönerPrice();
+        decimal ProductPriceBySteakBurger();
+        decimal TotalPriceByDrinkCategory();
+        decimal TotalPriceBySaladCategory();
+        List<Product> GetLast9Products();
     }
 }

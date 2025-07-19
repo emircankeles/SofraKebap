@@ -38,7 +38,12 @@ namespace SofraKebab.BusinessLayer.Concreate
 			return _ıproductdal.GetByID(id);	
 		}
 
-		public List<Product> TGetListAll()
+        public List<Product> TGetLast9Products()
+        {
+            return _ıproductdal.GetLast9Products();
+        }
+
+        public List<Product> TGetListAll()
 		{
 			return _ıproductdal.GetListAll();
 		}
@@ -76,6 +81,21 @@ namespace SofraKebab.BusinessLayer.Concreate
         public decimal TProductPriceAVG()
         {
             return _ıproductdal.ProductPriceAVG();
+        }
+
+        public decimal TProductPriceBySteakBurger()
+        {
+            throw new NotImplementedException();
+        }
+
+        public decimal TTotalPriceByDrinkCategory()
+        {
+            throw new NotImplementedException();
+        }
+
+        public decimal TTotalPriceBySaladCategory()
+        {
+            throw new NotImplementedException();
         }
 
         public void TUpdate(Product entity)

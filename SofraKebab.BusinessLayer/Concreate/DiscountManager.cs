@@ -23,7 +23,17 @@ namespace SofraKebab.BusinessLayer.Concreate
 			_ıdiscountdal.Add(entity);
 		}
 
-		public void TDelete(Discount entity)
+        public void TChangeStatusToFalse(int id)
+        {
+			_ıdiscountdal.ChangeStatusToFalse(id);
+        }
+
+        public void TChangeStatusToTrue(int id)
+        {
+			_ıdiscountdal.ChangeStatusToTrue(id);
+        }
+
+        public void TDelete(Discount entity)
 		{
 			_ıdiscountdal.Delete(entity);
 		}
@@ -38,7 +48,12 @@ namespace SofraKebab.BusinessLayer.Concreate
 			return _ıdiscountdal.GetListAll();
 		}
 
-		public void TUpdate(Discount entity)
+        public List<Discount> TGetListByStatusTrue()
+        {
+            return _ıdiscountdal.GetListByStatusTrue();
+        }
+
+        public void TUpdate(Discount entity)
 		{
 			_ıdiscountdal.Update(entity);
 		}

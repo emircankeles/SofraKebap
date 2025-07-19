@@ -44,12 +44,9 @@ namespace API.Controllers
         [HttpPost]
         public IActionResult CreateCategory(CreateCategoryDto createCategoryDto)
         {
-            _categoryService.TAdd(new Category()
-            {
-                Name = createCategoryDto.Name,
-                Status = true
-            });
-
+            createCategoryDto.Status = true;
+            var value = _mapper.Map<Category>(createCategoryDto);
+            _categoryService.TAdd(value);
             return Ok("Kategori eklendi.");
         }
         [HttpDelete("{id}")]
